@@ -1,2 +1,2 @@
-# templates
-Templates for different operations
+# Templates
+Templates for different cluster operations

@@ -1,0 +1,26 @@
+---
+name: Deploy <application> server
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "k8s/**"
+  workflow_dispatch:
+jobs:
+  deploy:
+    name: Apply Kubernetes Manifests
+    runs-on: [deploy]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          clean: true
+          persistent-credentials: false
+
+      - name: Apply
+        run: |
+          echo "Applying Manifest"
+          cd k8s
+          kubectl apply -k .
